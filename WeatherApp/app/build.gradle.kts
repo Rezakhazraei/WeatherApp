@@ -53,9 +53,12 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.3") // Navigation Component
     implementation ("com.squareup.retrofit2:retrofit:2.9.0") // Retrofit for API calls
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // JSON conversion
-    implementation ("io.coil-kt:coil-compose:2.4.0")
+    implementation ("io.coil-kt:coil-compose:2.4.0") // Coil for image loading
     implementation(libs.androidx.storage) // Image loading (for weather icons)
     implementation ("androidx.datastore:datastore-preferences:1.0.0") // DataStore for storing preferences
+    implementation ("com.airbnb.android:lottie-compose:6.0.0") // Lottie for animations
+    implementation ("com.google.android.gms:play-services-location:21.0.1") // Location services
+    implementation ("androidx.work:work-runtime-ktx:2.8.1") // WorkManager for background tasks
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -13,10 +13,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.weatherapp.repository.WeatherWorker
 import com.example.weatherapp.ui.theme.DarkColorScheme
 import com.example.weatherapp.ui.theme.InfoScreen
 import com.example.weatherapp.ui.theme.MainScreen
 import com.example.weatherapp.ui.theme.WeatherAppTheme
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +39,17 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        // Schedule weather updates every 3 hours
+        val workRequest = PeriodicWorkRequestBuilder<WeatherWorker>(3, TimeUnit.HOURS)
+            .setConstraints(Constraints.Builder().setRequiresBatteryNotLow(true).build())
+            .build()
+
+        // Enqueue the work request
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "weather_update",
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
     }
 }
 

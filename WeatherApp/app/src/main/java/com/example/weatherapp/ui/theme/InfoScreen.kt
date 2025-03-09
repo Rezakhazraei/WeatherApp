@@ -22,7 +22,9 @@ fun InfoScreen(onBack: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("This is a simple weather app using the OpenWeatherMap API.", style = MaterialTheme.typography.headlineMedium)
+        Text("This is a simple weather app using the OpenWeatherMap API. " +
+                "Developed by: Abolfazl Khazraei",
+            style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {onBack()}) {
             Text("Back to Home")
